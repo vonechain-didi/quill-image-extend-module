@@ -11,6 +11,9 @@ export const QuillWatch = {
     },
     emit: function (activeId, type = 1) {  // 事件发射触发
         this.active = this.watcher[activeId]
+        setTimeout(() => {
+            this.active.cursorIndex = this.active.quill.getSelection() ? this.active.quill.getSelection().index : this.active.quill.getLength()
+        }, 0)//获取当前光标位置
         if (type === 1) {
             imgHandler()
         }
@@ -81,7 +84,7 @@ export class ImageExtend {
                 if (this.config.action) {
                     // this.uploadImg()
                 } else {
-                    // this.toBase64()
+                    this.toBase64()
                 }
             }
         }
